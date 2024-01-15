@@ -1,29 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        map<int, int> mp;
-        set<int> st;
+        map<int, pair<int, int>> mp;
         
-        for(auto &match: matches) {
-            int i = match[0], j = match[1];
-            st.insert(i);
-            st.insert(j);
-            mp[j]++;
+        for(auto match: matches) {
+            mp[match[0]].first++;
+            mp[match[1]].second++;
         }
         
-        set<int> s;
-        vector<int> sec;
-        for(auto [a, b]: mp) {
-            s.insert(a);
-            if(b == 1)
-                sec.push_back(a);
+        vector<vector<int>> ans(2);
+        for(auto i: mp) {    
+            if(i.second.second == 0)
+                ans[0].push_back(i.first);
+            if(i.second.second == 1)
+                ans[1].push_back(i.first);
         }
         
-        vector<int> fir;
-        for(auto i: st)
-            if(s.find(i) == s.end())
-                fir.push_back(i);
+        return ans;
         
-        return {fir, sec};
     }
 };
