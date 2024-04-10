@@ -13,21 +13,10 @@ public:
             }
         }
         
-        for(int i = 0; i < m; i++) {
-            if(row[i] == 0) {
-                for(int j = 0; j < n; j++) {
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                if(row[i] == 0 || col[j] == 0)
                     matrix[i][j] = 0;
-                }
-            }
-        }
-        
-        for(int j = 0; j < n; j++) {
-            if(col[j] == 0) {
-                for(int i = 0; i < m; i++) {
-                    matrix[i][j] = 0;
-                }
-            }
-        }
         
     }
 };
